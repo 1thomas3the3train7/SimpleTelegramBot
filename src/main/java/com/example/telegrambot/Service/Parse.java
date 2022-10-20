@@ -14,7 +14,7 @@ public class Parse {
     private final String url = "https://f-mkpo.udsu.ru/class_times";
     private final String subUrl = "https://f-mkpo.udsu.ru";
     private final RestTemplate restTemplate = new RestTemplate();
-    @Scheduled(cron = "0 0 7 * * *")
+
     public String getCourses(){
         final String res = restTemplate.getForObject(url, String.class);
         final Document html = Jsoup.parse(res);
