@@ -19,6 +19,6 @@ public class TelegrambotApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
+		System.out.println("1");
 	}
 }

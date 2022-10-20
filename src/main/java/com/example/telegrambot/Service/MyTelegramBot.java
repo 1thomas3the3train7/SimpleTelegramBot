@@ -25,7 +25,7 @@ public class MyTelegramBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         System.out.println(update.getMessage().getText());
         final long chatId = update.getMessage().getChatId();
-        final String message = /*parse.getCourses();*/"assd";
+        final String message = parse.getCourses();;
         sendMessage(String.valueOf(chatId),message);
     }
 

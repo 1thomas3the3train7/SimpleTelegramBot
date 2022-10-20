@@ -16,17 +16,23 @@ public class Parse {
     private final RestTemplate restTemplate = new RestTemplate();
 
     public String getCourses(){
-        final String res = restTemplate.getForObject(url, String.class);
-        final Document html = Jsoup.parse(res);
-        final String var1 = "1 смена псо, пд";
-        final String var2 = "1 смена псо,пд";
-        Elements span = html.getElementsByClass("download");
-        for(Element e : span){
-            final String thisText = e.text().toLowerCase();
-            if(thisText.equals(var1) || thisText.equals(var2)){
-                return subUrl + e.select("span.download > a").attr("href");
+        try {
+            final String res = restTemplate.getForObject(url, String.class);
+            final Document html = Jsoup.parse(res);
+            final String var1 = "1 смена псо, пд";
+            final String var2 = "1 смена псо,пд";
+            Elements span = html.getElementsByClass("download");
+            for(Element e : span){
+                final String thisText = e.text().toLowerCase();
+                if(thisText.equals(var1) || thisText.equals(var2)){
+                    return subUrl + e.select("span.download > a").attr("href");
+                }
             }
+            return "Элемент не найден, походу додики верстку поменяли или текст";
+        } catch (Exception e){
+            System.out.println("exc in parse");
+            System.out.println(e.getMessage());
+            throw new RuntimeException();
         }
-        return "Элемент не найден, походу додики верстку поменяли или текст";
     }
 }
