@@ -1,6 +1,5 @@
 package com.example.telegrambot.Service;
 
-import com.example.telegrambot.Config.BotConfig;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -9,17 +8,17 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Service
 public class MyTelegramBot extends TelegramLongPollingBot {
-    private final BotConfig botConfig;
     private final Parse parse;
+    private final String token = "5056421940:AAHV3nlWpmUd8_DrjbVHKICKkxt7SmmBbPM";
+    private final String name = "AEAEAE140";
 
-    public MyTelegramBot(BotConfig botConfig, Parse parse) {
-        this.botConfig = botConfig;
+    public MyTelegramBot( Parse parse) {
         this.parse = parse;
     }
 
     @Override
     public String getBotToken() {
-        return botConfig.getToken();
+        return token;
     }
 
     @Override
@@ -32,7 +31,7 @@ public class MyTelegramBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return botConfig.getName();
+        return name;
     }
     private void sendMessage(final String chatId,final String message){
         final SendMessage sendMessage = new SendMessage(chatId,message);
